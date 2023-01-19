@@ -1,0 +1,45 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.OpenFireTest" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/dogwood_rose</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+
+    </style>
+
+    <!--TextViews-->
+    <style name="TextAppearance.AppCompat.OpenFire.Display1" parent="TextAppearance.AppCompat.Display1">
+        <item name="android:textColor">@color/xiketic</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/dongle_regular</item>
+    </style>
+    <style name="TextAppearance.AppCompat.OpenFire.Display4" parent="TextAppearance.AppCompat.OpenFire.Display1">
+        <item name="android:textSize">48sp</item>
+    </style>
+    <style name="TextAppearance.AppCompat.OpenFire.LogoText" parent="TextAppearance.AppCompat.OpenFire.Display1">
+        <item name="android:fontFamily">@font/dongle_bold</item>
+        <item name="android:textColor">@color/st_patrick_blue</item>
+    </style>
+    <style name="TextAppearance.AppCompat.OpenFire.Hyperlink" parent="TextAppearance.AppCompat.OpenFire.Display1">
+        <item name="android:textColor">@color/dogwood_rose</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">@font/dongle_light</item>
+    </style>
+    <style name="TextAppearance.AppCompat.OpenFire.Body1" parent="TextAppearance.AppCompat.OpenFire.Hyperlink">
+        <item name="android:textColor">@color/xiketic</item>
+    </style>
+
+
+    <!--Button-->
+    <style name="Widget.MaterialComponents.OpenFire.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_height">56dp</item>
+    </style>
+</resources>
