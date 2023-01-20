@@ -97,4 +97,5 @@
             android:text="@string/register_"
             android:textAppearance="@style/TextAppearance.AppCompat.OpenFire.Hyperlink" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -64,5 +64,8 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
-
+    // OpenFire
+    def smack_version = "4.3.4"
+    implementation "org.igniterealtime.smack:smack-tcp:$smack_version"
+    implementation "org.igniterealtime.smack:smack-android-extensions:$smack_version"
 }
