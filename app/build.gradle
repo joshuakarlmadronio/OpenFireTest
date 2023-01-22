@@ -68,4 +68,7 @@ dependencies {
     def smack_version = "4.3.4"
     implementation "org.igniterealtime.smack:smack-tcp:$smack_version"
     implementation "org.igniterealtime.smack:smack-android-extensions:$smack_version"
+
+    // Loading button
+    implementation "com.github.koushikcse:LoadingButton:1.7"
 }

@@ -5,15 +5,17 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import org.jivesoftware.smack.ConnectionConfiguration
+import org.jivesoftware.smack.XMPPConnection
 import javax.inject.Singleton
 import org.jivesoftware.smack.tcp.XMPPTCPConnection
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration
+import org.jivesoftware.smackx.iqregister.AccountManager
 import java.net.InetAddress
 
 @Module
 @InstallIn(SingletonComponent::class)
 object OpenFireModule {
-    private const val HOST = "192.168.1.5"
+    private const val HOST = "192.168.254.105"
     private const val PORT = 5222
     private const val DOMAIN = "joshu-pc"
 
@@ -31,4 +33,9 @@ object OpenFireModule {
 
         return XMPPTCPConnection(config)
     }
+
+    @Provides
+    @Singleton
+    fun providesAccountManager(connection: XMPPTCPConnection): AccountManager =
+        AccountManager.getInstance(connection)
 }

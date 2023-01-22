@@ -11,6 +11,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import org.jivesoftware.smack.tcp.XMPPTCPConnection
+import org.jivesoftware.smackx.iqregister.AccountManager
 import javax.inject.Singleton
 
 @Module
@@ -23,6 +24,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesOpenFireAPI(pref: SharedPreferences, connection: XMPPTCPConnection): OpenFireAPI =
-        OpenFireAPI(pref, connection)
+    fun providesOpenFireAPI(pref: SharedPreferences, connection: XMPPTCPConnection,
+                            accountManager: AccountManager): OpenFireAPI =
+        OpenFireAPI(pref, connection, accountManager)
 }

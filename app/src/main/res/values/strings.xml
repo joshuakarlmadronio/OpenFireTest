@@ -23,5 +23,6 @@
 
     <!--Errors-->
     <string name="cannot_be_blank_error">%1$s cannot be blank!</string>
+    <string name="passwords_do_not_match">Passwords do not match!</string>
 
 </resources>

@@ -1,5 +1,7 @@
 package com.joshuakarl.openfiretest.view.fragment
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +14,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.joshuakarl.openfiretest.R
 import com.joshuakarl.openfiretest.api.OpenFireAPI
 import com.joshuakarl.openfiretest.databinding.FragmentLoginBinding
+import com.joshuakarl.openfiretest.view.activity.LoginActivity
+import com.kusu.loadingbutton.LoadingButton
 import dagger.hilt.android.AndroidEntryPoint
 import org.jivesoftware.smack.ConnectionListener
 import org.jivesoftware.smack.XMPPConnection
@@ -25,7 +29,6 @@ class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,17 +50,20 @@ class LoginFragment : Fragment() {
                 }
                 override fun authenticated(connection: XMPPConnection?, resumed: Boolean) {
                     Log.d(TAG, "Login auth successful")
-                    // Proceed to Home Activity
+                    (activity as? LoginActivity)?.launchHomeActivity()
                 }
                 override fun connectionClosed() { }
                 override fun connectionClosedOnError(e: Exception?) {
-                    val snackbar = Snackbar.make(view, "Error", Snackbar.LENGTH_INDEFINITE)
-                    snackbar.show()
+                    e?.printStackTrace()
+                    (activity as? LoginActivity)?.showSnackbarError("ERROR")
                 }
             }
             openFireAPI.addConnectionListener(listener)
 
-            login()
+            val username = binding.textInputLayout.editText!!.text.toString()
+            val password = binding.textInputLayout2.editText!!.text.toString()
+            if ((activity as? LoginActivity)?.login(username, password) == true)
+                (activity as? LoginActivity)?.showLoading(binding.SignInButton)
         }
     }
 
@@ -66,39 +72,7 @@ class LoginFragment : Fragment() {
         binding.root.findNavController().navigate(action)
     }
 
-    private fun login() {
-        var loginError = ""
-
-        val username = binding.textInputLayout.editText!!.text.toString()
-        if (username.isEmpty() or username.isEmpty()) loginError =
-            getString(R.string.cannot_be_blank_error, getString(R.string.prompt_email))
-
-        val password = binding.textInputLayout2.editText!!.text.toString()
-        if (password.isEmpty() or password.isEmpty()) loginError =
-            getString(R.string.cannot_be_blank_error, getString(R.string.prompt_password))
-
-        if (loginError.isEmpty() or loginError.isBlank()) {
-            openFireAPI.login(username, password)
-            disable(binding.SignInButton)
-        } else showSnackbarError(loginError)
-    }
-
-    private fun showSnackbarError(error: String, length: Int = Snackbar.LENGTH_LONG) {
-        val snackbar = Snackbar.make(binding.root, error, length)
-        snackbar.setBackgroundTint(Color.RED)
-        snackbar.setTextColor(Color.WHITE)
-        snackbar.show()
-        // Also log in console
-        Log.e(TAG, error)
-    }
-
-    private fun disable(view: View) {
-        view.isClickable = false
-        view.alpha = 0.5f
-    }
-
     companion object {
         private const val TAG = "LoginFragment"
     }
-
 }
